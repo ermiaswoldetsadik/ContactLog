@@ -1,0 +1,10 @@
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\bin\Debug\ContactLog.exe.config
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\bin\Debug\ContactLog.exe
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\bin\Debug\ContactLog.pdb
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\obj\Debug\ContactLog.csprojAssemblyReference.cache
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\obj\Debug\ContactLog.Econtact.resources
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\obj\Debug\ContactLog.Properties.Resources.resources
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\obj\Debug\ContactLog.csproj.GenerateResource.cache
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\obj\Debug\ContactLog.csproj.CoreCompileInputs.cache
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\obj\Debug\ContactLog.exe
+C:\Users\ermov\gtcoding\C#\ContactLog\ContactLog\obj\Debug\ContactLog.pdb
