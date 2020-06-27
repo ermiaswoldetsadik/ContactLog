@@ -41,7 +41,7 @@ namespace Econtact
                 //Successfully Inserted
                 MessageBox.Show("New Contact Successfully Inserted");
                 //Call the Clear Method Here
-                
+                Clear();
             }
             else
             {
@@ -60,5 +60,90 @@ namespace Econtact
             dgvContactList.DataSource = dt;
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        //Method to Clear form
+        public void Clear()
+        {
+            txtboxFirstName.Text = "";
+            txtboxLastName.Text = "";
+            txtBoxContactNumber.Text = "";
+            txtboxAddress.Text = "";
+            cmbGender.Text = "";
+            txtboxContactID.Text = "";
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //Get the Data from textboxes
+            c.ContactID = int.Parse(txtboxContactID.Text);
+            c.FirstName = txtboxFirstName.Text;
+            c.LastName = txtboxLastName.Text;
+            c.ContactNo = txtBoxContactNumber.Text;
+            c.Address = txtboxAddress.Text;
+            c.Gender = cmbGender.Text;
+            //Update DAta in Database
+            bool success = c.Update(c);
+            if (success == true)
+            {
+                //Updated Successfully
+                MessageBox.Show("Contact has been successfully Updated.");
+                //Load Data on Data GRidview
+                DataTable dt = c.Select();
+                dgvContactList.DataSource = dt;
+                //Call Clear Method
+                Clear();
+            }
+            else
+            {
+                //Failed to Update
+                MessageBox.Show("Try Again!!!");
+            }
+        }
+
+        private void dgvContactList_RowHeaderMouseClick_1(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //Get the DAta From DAta Grid View and Load it to the textboxes respectively
+            //identify the row on which mouse is clicked
+            int rowIndex = e.RowIndex;
+            txtboxContactID.Text = dgvContactList.Rows[rowIndex].Cells[0].Value.ToString();
+            txtboxFirstName.Text = dgvContactList.Rows[rowIndex].Cells[1].Value.ToString();
+            txtboxLastName.Text = dgvContactList.Rows[rowIndex].Cells[2].Value.ToString();
+            txtBoxContactNumber.Text = dgvContactList.Rows[rowIndex].Cells[3].Value.ToString();
+            txtboxAddress.Text = dgvContactList.Rows[rowIndex].Cells[4].Value.ToString();
+            cmbGender.Text = dgvContactList.Rows[rowIndex].Cells[5].Value.ToString();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            //Call Clear Method Here
+            Clear();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //Get the Contact ID fromt eh Application
+            c.ContactID = Convert.ToInt32(txtboxContactID.Text);
+            bool success = c.Delete(c);
+            if (success == true)
+            {
+                //Successfully Deleted
+                MessageBox.Show("Contact successfully deleted.");
+                //Refresh Data GridView
+                //Load Data on Data GRidview
+                DataTable dt = c.Select();
+                dgvContactList.DataSource = dt;
+                //CAll the Clear Method Here
+                Clear();
+            }
+            else
+            {
+                //FAiled to dElte
+                MessageBox.Show(" Try Again!!!");
+            }
+        }
     }
 }
+
