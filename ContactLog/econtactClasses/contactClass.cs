@@ -66,7 +66,14 @@ namespace ContactLog.econtactClasses
                 //open connection
                 conn.Open();
                 int rows = cmd.ExecuteNonQuery();
-
+                if (rows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
             }
             catch(Exception ex)
             {
@@ -78,6 +85,78 @@ namespace ContactLog.econtactClasses
 
             }
                 return isSuccess;
+        }
+        //method to update
+        public bool Update(contactClass c)
+        {
+            bool isSuccess = false;
+            SqlConnection conn = new SqlConnection(myconnstrng);
+            try
+            {
+                //sql to update
+                string sql = "UPDATE tbl_contact SET FirstName=@FirstName,LastName=@LastName,ContactNo=@ContactNo,Address=@Address,Gender=@Gender WHERE ContactID=@ContactID";
+                //creat sql command
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@FirstName", c.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", c.LastName);
+                cmd.Parameters.AddWithValue("@ContactNo", c.ContactNo);
+                cmd.Parameters.AddWithValue("@Address", c.Address);
+                cmd.Parameters.AddWithValue("@Gender", c.Gender);
+                cmd.Parameters.AddWithValue("@ContactID", c.ContactID);
+                //open db conn
+                conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return isSuccess;
+        }
+        //method to delete
+        public bool Delete(contactClass c)
+        {
+            bool isSuccess = false;
+            return isSuccess;
+            SqlConnection conn = new SqlConnection(myconnstrng);
+            try
+            {
+                //sql to delete
+                string sql = "Delete FROM tbl_contact WHERE ContactID=ContactID";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("ContactID", c.ContactID);
+                conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 
