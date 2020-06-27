@@ -144,6 +144,18 @@ namespace Econtact
                 MessageBox.Show(" Try Again!!!");
             }
         }
+        static string myconnstr = ConfigurationManager.ConnectionStrings["connstrng"].ConnectionString;
+        private void txtboxSearch_TextChanged(object sender, EventArgs e)
+        {
+            //Get teh value from text box
+            string keyword = txtboxSearch.Text;
+
+            SqlConnection conn = new SqlConnection(myconnstr);
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM tbl_contact WHERE FirstName LIKE '%" + keyword + "%' OR LastName LIKE '%" + keyword + "%' OR Address LIKE '%" + keyword + "%'", conn);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            dgvContactList.DataSource = dt;
+        }
     }
 }
 
