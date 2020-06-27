@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ContactLog
 {
-    public partial class Form1 : Form
+    public partial class ContactLog : Form
     {
-        public Form1()
+        public ContactLog()
         {
             InitializeComponent();
         }
